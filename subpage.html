@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi tiết hiện vật</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="data.js" defer></script>
+</head>
+
+<body class="main-bg">
+  <div class="detail-card">
+    <h1 id="item-name"></h1>
+    <h3 id="item-name-en" style="color: gray; font-weight: normal;"></h3>
+    <img id="item-img" src="" alt="Hiện vật" style="width:100%;border-radius:10px;">
+    <p id="item-desc"></p>
+    <p id="item-desc-en" style="color:#555;font-style:italic;"></p>
+    <button class="back-btn" onclick="goBack()">⬅️ Quay lại danh sách</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"));
+    const item = items.find(i => i.id === id);
+
+    if (item) {
+      document.getElementById("item-name").textContent = item.name;
+      document.getElementById("item-name-en").textContent = item.name_en;
+      document.getElementById("item-img").src = item.img;
+      document.getElementById("item-desc").textContent = item.desc;
+      document.getElementById("item-desc-en").textContent = item.desc_en;
+    }
+
+    function goBack() {
+      window.location.href = "main_page.html";
+    }
+  </script>
+</body>
+</html>
